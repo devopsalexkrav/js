@@ -22,6 +22,8 @@ Production-oriented UI automation framework для проверки главно
 ### Основные библиотеки
 
 - `@playwright/test` `1.59.1` — UI/API automation framework, runner, assertions, fixtures, reporters
+- `allure-playwright` `3.7.1` — интеграция Allure-репортинга с Playwright
+- `allure-commandline` `2.38.1` — генерация статического Allure HTML-отчета
 - `eslint` `10.2.0` — статический анализ кода
 - `eslint-plugin-playwright` `2.10.1` — best practices и правила для Playwright-тестов
 - `prettier` `3.8.3` — единое форматирование кода
@@ -107,7 +109,8 @@ Production-oriented UI automation framework для проверки главно
 - устанавливает зависимости
 - ставит браузеры Playwright
 - запускает quality gates
-- сохраняет HTML report и `test-results` как артефакты
+- собирает `Allure`-отчет
+- сохраняет `allure-report`, HTML report Playwright и `test-results` как артефакты
 
 ## Быстрый старт
 
@@ -161,6 +164,18 @@ npm run test:ui
 npm run check
 ```
 
+### Локальная сборка Allure-отчета
+
+```bash
+npm run report:allure
+```
+
+### Локальное открытие Allure-отчета
+
+```bash
+npm run report:allure:open
+```
+
 ## NPM-скрипты
 
 - `npm test` — полный запуск тестов
@@ -174,6 +189,8 @@ npm run check
 - `npm run format` — форматирование кода
 - `npm run format:check` — проверка форматирования без изменений
 - `npm run report` — открытие HTML-отчета Playwright
+- `npm run report:allure` — генерация статического Allure HTML-отчета из `allure-results`
+- `npm run report:allure:open` — локальное открытие Allure-отчета
 
 ## Конфигурация и переменные окружения
 
@@ -192,6 +209,7 @@ BASE_URL=https://www.onliner.by npm test
 - в CI включены `retries`
 - `trace` сохраняется на падениях
 - `video` отключен намеренно, чтобы не усложнять и не замедлять pipeline без явной необходимости
+- после запуска тестов формируются `allure-results`, из которых можно собрать `allure-report`
 
 ## Quality Gates
 
@@ -220,7 +238,8 @@ Workflow расположен в `.github/workflows/ui-tests.yml`.
 3. `npm ci`
 4. `npx playwright install --with-deps chromium`
 5. `npm run check`
-6. upload артефактов (`playwright-report`, `test-results`)
+6. `npm run report:allure` при наличии `allure-results`
+7. upload артефактов (`allure-report`, `playwright-report`, `test-results`)
 
 ## Traceability
 
@@ -249,3 +268,4 @@ Workflow расположен в `.github/workflows/ui-tests.yml`.
 - для кейса `Новости` используется фактическая точка входа, доступная в текущей версии сайта
 - стек зависимостей зафиксирован версиями для воспроизводимого CI
 - отчетность и артефакты пригодны для анализа падений в GitHub Actions
+- `Allure` публикуется как отдельный artifact в GitHub Actions и может быть скачан/открыт из страницы конкретного run

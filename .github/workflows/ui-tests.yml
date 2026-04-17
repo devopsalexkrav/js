@@ -40,6 +40,22 @@ jobs:
       - name: Run quality gates
         run: npm run check
 
+      - name: Generate Allure report
+        if: always()
+        run: |
+          if [ -d allure-results ]; then
+            npm run report:allure
+          fi
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          if-no-files-found: ignore
+          retention-days: 14
+
       - name: Upload HTML report
         if: always()
         uses: actions/upload-artifact@v4

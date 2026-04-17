@@ -14,7 +14,11 @@ module.exports = defineConfig({
   expect: {
     timeout: 15 * 1000
   },
-  reporter: [['list'], ['html', { open: 'never' }]],
+  reporter: [
+    ['list'],
+    ['html', { open: 'never' }],
+    ['allure-playwright', { outputFolder: 'allure-results' }]
+  ],
   use: {
     baseURL: process.env.BASE_URL || 'https://www.onliner.by',
     trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
