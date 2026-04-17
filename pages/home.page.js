@@ -3,7 +3,9 @@ class HomePage {
     this.page = page;
     this.header = page.locator('.header-style, header.g-top').first().describe('Шапка сайта');
     this.mainNavigation = page.locator('.b-main-navigation').first().describe('Основная навигация');
-    this.contentBlocks = page.locator('.b-main-page-grid-4').describe('Контентные блоки на главной');
+    this.contentBlocks = page
+      .locator('.b-main-page-grid-4')
+      .describe('Контентные блоки на главной');
     this.footer = page.locator('footer.g-bottom, .footer-style').first().describe('Футер сайта');
     this.searchInput = page
       .locator('input.fast-search__input, input[type="search"], input[name*="query"]')
@@ -13,7 +15,10 @@ class HomePage {
       .locator('.b-top-logo a[href="https://www.onliner.by"], .b-top-logo a[href="/"]')
       .first()
       .describe('Ссылка логотипа в шапке');
-    this.logoImage = page.locator('.b-top-logo img.onliner_logo').first().describe('Логотип Onliner в шапке');
+    this.logoImage = page
+      .locator('.b-top-logo img.onliner_logo')
+      .first()
+      .describe('Логотип Onliner в шапке');
   }
 
   async open() {
