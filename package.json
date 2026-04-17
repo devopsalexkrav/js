@@ -1,0 +1,29 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "UI autotests for onliner.by homepage with Playwright JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "ci:test": "playwright test --reporter=line,html",
+    "check": "npm run format:check && npm run lint && npm run ci:test",
+    "report": "playwright show-report",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "1.59.1",
+    "eslint": "10.2.0",
+    "eslint-plugin-playwright": "2.10.1",
+    "prettier": "3.8.3"
+  }
+}
