@@ -111,6 +111,7 @@ Production-oriented UI automation framework для проверки главно
 - запускает quality gates
 - собирает `Allure`-отчет
 - сохраняет `allure-report`, HTML report Playwright и `test-results` как артефакты
+- публикует `Allure` в `GitHub Pages` при `push` в default branch
 
 ## Быстрый старт
 
@@ -176,6 +177,8 @@ npm run report:allure
 npm run report:allure:open
 ```
 
+Важно: `allure-report/index.html` не стоит открывать напрямую через `file://`, потому что браузер может не подгрузить данные из `data/`. Для локального просмотра используйте `npm run report:allure:open` или любой локальный HTTP-сервер.
+
 ## NPM-скрипты
 
 - `npm test` — полный запуск тестов
@@ -240,6 +243,9 @@ Workflow расположен в `.github/workflows/ui-tests.yml`.
 5. `npm run check`
 6. `npm run report:allure` при наличии `allure-results`
 7. upload артефактов (`allure-report`, `playwright-report`, `test-results`)
+8. публикация `allure-report` в `GitHub Pages` при `push` в default branch
+
+Для публикации Pages в репозитории должен быть включен источник `GitHub Actions` в `Settings -> Pages`.
 
 ## Traceability
 
@@ -268,4 +274,4 @@ Workflow расположен в `.github/workflows/ui-tests.yml`.
 - для кейса `Новости` используется фактическая точка входа, доступная в текущей версии сайта
 - стек зависимостей зафиксирован версиями для воспроизводимого CI
 - отчетность и артефакты пригодны для анализа падений в GitHub Actions
-- `Allure` публикуется как отдельный artifact в GitHub Actions и может быть скачан/открыт из страницы конкретного run
+- `Allure` сохраняется как artifact для скачивания и дополнительно публикуется через `GitHub Pages`
