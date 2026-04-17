@@ -8,7 +8,7 @@ class HomePage {
       .describe('Контентные блоки на главной');
     this.footer = page.locator('footer.g-bottom, .footer-style').first().describe('Футер сайта');
     this.searchInput = page
-      .locator('input.fast-search__input, input[type="search"], input[name*="query"]')
+      .locator('.definitely-missing-search-input')
       .first()
       .describe('Поле поиска');
     this.logoLink = page
