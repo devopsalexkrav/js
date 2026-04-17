@@ -27,7 +27,10 @@ test.describe('Onliner homepage smoke checks', () => {
     });
 
     await test.step('Ссылка логотипа ведет на главную страницу', async () => {
-      await expect(homePage.logoLink).toHaveAttribute('href', 'https://www.onliner.by');
+      await expect(
+        homePage.logoLink,
+        'Логотип в шапке должен вести на главную страницу Onliner'
+      ).toHaveAttribute('href', 'https://www.onliner.by');
     });
   });
 
