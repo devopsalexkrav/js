@@ -21,9 +21,9 @@ module.exports = defineConfig({
   ],
   use: {
     baseURL: process.env.BASE_URL || 'https://www.onliner.by',
-    trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry',
+    trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    video: 'off',
+    video: 'retain-on-failure',
     viewport: { width: 1440, height: 900 },
     actionTimeout: 10 * 1000,
     navigationTimeout: 30 * 1000

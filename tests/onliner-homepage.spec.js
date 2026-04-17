@@ -8,7 +8,8 @@ test.describe('Onliner homepage smoke checks', () => {
   });
 
   test('TC-01: главная страница открывается @smoke', async ({ page }) => {
-    await expect(page).toHaveURL(/onliner\.by/);
+    // Intentional failure to verify CI artifact collection.
+    await expect(page).toHaveURL(/definitely-not-onliner\.by/);
   });
 
   test('TC-02: заголовок страницы содержит Onliner @smoke', async ({ page }) => {
